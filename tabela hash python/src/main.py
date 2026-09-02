@@ -1,13 +1,15 @@
+#programa / menu
+
 from hash_table import HashTable
 from user import User
 
 
-def validar_cpf(cpf: str) -> bool:
+def validar_cpf(cpf: str) -> bool: # essa função é responsável por validar se o CPF fornecido é válido. Ela remove pontos e traços do CPF, verifica se ele contém apenas dígitos e se possui exatamente 11 caracteres. Retorna True se o CPF for válido e False caso contrário.
     cpf = cpf.replace(".", "").replace("-", "").strip()
-    return cpf.isdigit() and len(cpf) == 11
+    return cpf.isdigit() and len(cpf) == 11 # A função retorna True se o CPF contiver apenas dígitos e tiver exatamente 11 caracteres, indicando que é um CPF válido. Caso contrário, retorna False, indicando que o CPF é inválido.
 
 
-def menu():
+def menu(): 
     print("\n====== SISTEMA DE USUÁRIOS ======")
     print("1 - Cadastrar usuário")
     print("2 - Buscar usuário")
@@ -18,10 +20,10 @@ def menu():
     print("=================================")
 
 
-def main():
+def main():# essa função é responsável por executar o programa principal, que consiste em um loop que exibe um menu de opções para o usuário interagir com a tabela hash. O usuário pode cadastrar, buscar, remover e verificar usuários, além de exibir a estrutura interna da tabela hash. A função continua executando até que o usuário escolha a opção de sair.
     tabela = HashTable(capacity=10)
 
-    while True:
+    while True: #mantém o programa em execução até que o usuário escolha a opção de sair. O loop permite que o usuário interaja com a tabela hash repetidamente, realizando operações como cadastrar, buscar, remover e verificar usuários, além de exibir a estrutura interna da tabela hash.
         menu()
         opcao = input("Escolha uma opção: ").strip()
 
@@ -79,5 +81,5 @@ def main():
             print("✗ Opção inválida.")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # essa condição verifica se o script está sendo executado diretamente (ou seja, não está sendo importado como um módulo em outro script). Se for o caso, a função main() é chamada para iniciar o programa. Isso permite que o código seja reutilizado como um módulo sem executar automaticamente a função main() quando importado.
     main()

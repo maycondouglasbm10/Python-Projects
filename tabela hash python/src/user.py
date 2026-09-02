@@ -1,7 +1,9 @@
+# modelo do usuário
+
 from dataclasses import dataclass
 
 
-@dataclass
+@dataclass # recurso do Python para facilitar a criação de classes que armazenam dados e cria automaticamente o __init__
 class User:
     cpf: str
     nome: str
