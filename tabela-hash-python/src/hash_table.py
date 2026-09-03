@@ -14,8 +14,16 @@ class HashTable:
         self.buckets = [[] for _ in range(capacity)] #cria as "gavetas" da tabela hash, que são listas vazias onde os elementos serão armazenados.
 
     def _resize(self):
+        old_capacity = self.capacity
         old_buckets = self.buckets
+
+
         self.capacity *= 2
+
+        print(f"\n⚠️ Fator de carga excedido!")
+        print(f"🔄 Redimensionando tabela: {old_capacity} → {self.capacity}")
+        print("♻️ Recalculando índices dos elementos...")
+
         self.buckets = [[] for _ in range(self.capacity)]
 
         for bucket in old_buckets:
@@ -23,7 +31,7 @@ class HashTable:
                 key, value = item
                 index = self._hash(key)
                 self.buckets[index].append([key,value])
-
+        print("✅ Redimensionamento concluído!\n")
 
     def _hash(self, key: str) -> int:
         """
@@ -88,9 +96,7 @@ class HashTable:
         return self.size / self.capacity
 
     def display(self) -> None: # essa função exibe a estrutura interna da tabela hash, mostrando o conteúdo de cada "gaveta" (bucket) da tabela. Ela percorre todas as "gavetas" e imprime os pares chave-valor armazenados em cada uma delas, além de exibir informações sobre o número total de elementos, a capacidade da tabela e o fator de carga.
-        """
-        Exibe a estrutura interna da tabela.
-        """
+       
         print("\n========== TABELA HASH ==========")
 
         for index, bucket in enumerate(self.buckets): # percorre todas as "gavetas" da tabela hash, usando a função enumerate para obter tanto o índice da "gaveta" quanto o conteúdo da "gaveta" em si. Para cada "gaveta", ele imprime o índice e, em seguida, verifica se a "gaveta" está vazia ou contém elementos. Se estiver vazia, imprime "Vazio". Caso contrário, percorre os pares chave-valor na "gaveta" e os imprime no formato "chave -> valor", separados por "|".
