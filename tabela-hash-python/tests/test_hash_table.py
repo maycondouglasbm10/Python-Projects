@@ -71,3 +71,23 @@ def test_resize_keeps_elements():
     assert tabela.get("2") == "Maria"
     assert tabela.get("3") == "Pedro"
     assert tabela.get("4") == "Ana"
+
+def test_collision_and_resize():
+    tabela = HashTable(4)
+
+    # "1" e "5" geram o mesmo indice na capacidade 4 
+    tabela.insert("1", "João")
+    tabela.insert("5", "Maria")
+
+    #inserimos mais elementos para forçar o resize
+    tabela.insert("2", "Pedro")
+    tabela.insert("3", "Ana")
+
+    #a capacidade deve ter dobrado 
+    assert tabela.capacity == 8
+
+    #todos os elemenetos devem continuar acessiveis
+    assert tabela.get("1") == "João"
+    assert tabela.get("5") == "Maria"
+    assert tabela.get("2") == "Pedro"
+    assert tabela.get("3") == "Ana"
