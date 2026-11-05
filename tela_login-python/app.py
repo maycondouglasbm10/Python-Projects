@@ -6,12 +6,12 @@ def validar_login():
     usuario = campo_usuario.get()
     senha = campo_senha.get()
 
-    if usuario == 'maycon' and senha == '123456':
-        resultado_login.configure(text='Login feito com sucesso!', 
-        text_color='green')
+    if usuario == 'maycon' and senha == 'maybe90':
+        resultado_login.configure(text='Login feito com sucesso! Aguarde...', 
+        text_color='green',)
     else:
-        resultado_login.configure(text='Login incorreto',
-                                  text_color='green')
+        resultado_login.configure(text='Login incorreto, tente novamente...',
+                                  text_color='red')
 
 app = ctk.CTk()
 app.title('Sistema  de login')
